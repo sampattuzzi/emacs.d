@@ -7,13 +7,6 @@
 ;; somewhere in your load-path and create hooks for outline modes to
 ;; load this automatically, for example:
 
-;;     (add-hook 'outline-mode-hook 'my-outline-easy-bindings)
-;;     (add-hook 'outline-minor-mode-hook 'my-outline-easy-bindings)
-;;
-;;     (defun my-outline-easy-bindings ()
-;;       (require 'outline-mode-easy-bindings nil t))
-
-
 (defun outline-body-p ()
   (save-excursion
     (outline-back-to-heading)
@@ -67,24 +60,27 @@
           (t
            (show-subtree)))))
 
-(let ((map outline-mode-map))
-  (define-key map (kbd "M-<left>") 'outline-hide-more)
-  (define-key map (kbd "M-<right>") 'outline-show-more)
-  (define-key map (kbd "M-<up>") 'outline-previous-visible-heading)
-  (define-key map (kbd "M-<down>") 'outline-next-visible-heading)
-  (define-key map (kbd "C-c J") 'outline-hide-more)
-  (define-key map (kbd "C-c L") 'outline-show-more)
-  (define-key map (kbd "C-c I") 'outline-previous-visible-heading)
-  (define-key map (kbd "C-c K") 'outline-next-visible-heading))
+(defun my-outline-easy-bindings ()
 
-(let ((map outline-minor-mode-map))
-  (define-key map (kbd "M-<left>") 'outline-hide-more)
-  (define-key map (kbd "M-<right>") 'outline-show-more)
-  (define-key map (kbd "M-<up>") 'outline-previous-visible-heading)
-  (define-key map (kbd "M-<down>") 'outline-next-visible-heading)
-  (define-key map (kbd "C-c J") 'outline-hide-more)
-  (define-key map (kbd "C-c L") 'outline-show-more)
-  (define-key map (kbd "C-c I") 'outline-previous-visible-heading)
-  (define-key map (kbd "C-c K") 'outline-next-visible-heading))
+ (let ((map outline-mode-map))
+   (define-key map (kbd "M-<left>") 'outline-hide-more)
+   (define-key map (kbd "M-<right>") 'outline-show-more)
+   (define-key map (kbd "M-<up>") 'outline-previous-visible-heading)
+   (define-key map (kbd "M-<down>") 'outline-next-visible-heading)
+   (define-key map (kbd "C-c J") 'outline-hide-more)
+   (define-key map (kbd "C-c L") 'outline-show-more)
+   (define-key map (kbd "C-c I") 'outline-previous-visible-heading)
+   (define-key map (kbd "C-c K") 'outline-next-visible-heading))
 
-(provide 'outline-mode-easy-bindings)
+ (let ((map outline-minor-mode-map))
+   (define-key map (kbd "M-<left>") 'outline-hide-more)
+   (define-key map (kbd "M-<right>") 'outline-show-more)
+   (define-key map (kbd "M-<up>") 'outline-previous-visible-heading)
+   (define-key map (kbd "M-<down>") 'outline-next-visible-heading)
+   (define-key map (kbd "C-c J") 'outline-hide-more)
+   (define-key map (kbd "C-c L") 'outline-show-more)
+   (define-key map (kbd "C-c I") 'outline-previous-visible-heading)
+   (define-key map (kbd "C-c K") 'outline-next-visible-heading)))
+
+(add-hook 'outline-mode-hook 'my-outline-easy-bindings)
+(add-hook 'outline-minor-mode-hook 'my-outline-easy-bindings)
